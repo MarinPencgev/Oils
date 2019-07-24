@@ -12943,11 +12943,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nora\\source\\repos\\Oils\\Oils\\Oils.csproj",
+      "projectUniqueName": "C:\\Users\\Nora\\Desktop\\Oils-ProjectDefence\\Oils\\Oils\\Oils.csproj",
       "projectName": "Oils",
-      "projectPath": "C:\\Users\\Nora\\source\\repos\\Oils\\Oils\\Oils.csproj",
+      "projectPath": "C:\\Users\\Nora\\Desktop\\Oils-ProjectDefence\\Oils\\Oils\\Oils.csproj",
       "packagesPath": "C:\\Users\\Nora\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nora\\source\\repos\\Oils\\Oils\\obj\\",
+      "outputPath": "C:\\Users\\Nora\\Desktop\\Oils-ProjectDefence\\Oils\\Oils\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

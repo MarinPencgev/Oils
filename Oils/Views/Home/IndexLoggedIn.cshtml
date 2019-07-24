@@ -2,7 +2,7 @@
 @{
     this.ViewData["Title"] = "Home Page";
 }
-
+@using Oils.Models.ViewModels
 
 <div class="container-fluid ml-5">
     <div class="text-left">
@@ -13,9 +13,9 @@
             <tr class="row">
                 <th scope="col" class="col-lg-2 suls-text-color">Sequence</th>
                 <th scope="col" class="col-lg-2 suls-text-color">Receiver</th>
-                <th scope="col" class="col-lg-2 suls-text-color">PacksCount</th>
-                <th scope="col" class="col-lg-2 suls-text-color">PacksWeight</th>
-                <th scope="col" class="col-lg-2 suls-text-color">DeliveryAddress</th>
+                <th scope="col" class="col-lg-2 suls-text-color">Packs total count</th>
+                <th scope="col" class="col-lg-2 suls-text-color">Packs total weight</th>
+                <th scope="col" class="col-lg-2 suls-text-color">Delivery address</th>
                 <th scope="col" class="col-lg-2 suls-text-color">Action</th>
             </tr>
         </thead>
@@ -23,15 +23,15 @@
             @foreach (var order in Model)
             {
                 <tr class="row">
-                    <td class="col-lg-2 suls-text-color">@order.SequenceNumber</td>
-                    <td class="col-lg-2 suls-text-color">@order.Receiver.Name</td>
-                    <td class="col-lg-2 suls-text-color">N/A</td>
-                    <td class="col-lg-2 suls-text-color">N/A</td>
-                    <td class="col-lg-2 suls-text-color">N/A</td>
+                    <td class="col-lg-2 suls-text-color">@order.Sequence</td>
+                    <td class="col-lg-2 suls-text-color">@order.ReceiverName</td>
+                    <td class="col-lg-2 suls-text-color">@order.OrderedPackagesCount</td>
+                    <td class="col-lg-2 suls-text-color">@order.OrderedPackagesWeight</td>
+                    <td class="col-lg-2 suls-text-color">@order.DeliveryAddress</td>
                     <td class="col-lg-2 suls-text-color">
                         <div class="button-holder">
-                            <a href="/Orders/Edit?id=@order.Id" class="btn btn-warning">Edit</a>
-                            <a href="/Orders/Remove?id=@order.Id" class="btn btn-warning">Remove</a>
+                            <a href="/Orders/Edit?id=@order.OrderId" class="btn btn-warning">Edit</a>
+                            <a href="/Orders/Remove?id=@order.OrderId" class="btn btn-warning">Remove</a>
                         </div>
                     </td>
                 </tr>

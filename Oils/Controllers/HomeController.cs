@@ -31,24 +31,35 @@ namespace Oils.Controllers
 
                 var uncompletedOrders = this.ordersService.GetAllUncomleted();
 
-                var model = uncompletedOrders.Select(x => new CreateOrderViewModel
+                //var model = uncompletedOrders.Select(x => new CreateOrderViewModel
+                //{
+                //    Id = x.Id,
+                //    SequenceNumber = x.SequenceNumber,
+                //    CreatedOn = x.CreatedOn,
+                //    Purpose = x.Purpose,
+                //    Status = x.Status,
+                //    Receiver = x.Receiver,
+                //    Carrier = x.Carrier,
+                //    Driver = x.Driver,
+                //    Vehicle = x.Vehicle,
+                //    DeliveryAddress =x.DeliveryAddress,
+                //    OrderedProducts = x.Products,
+
+                //})
+                //    .OrderBy(x=>x.SequenceNumber)
+                //    .ToList(); 
+
+                var model = uncompletedOrders.Select(x => new UncomletedOrdersViewModel
                 {
-                    Id = x.Id,
-                    SequenceNumber = x.SequenceNumber,
-                    CreatedOn = x.CreatedOn,
-                    Purpose = x.Purpose,
-                    Status = x.Status,
-                    Receiver = x.Receiver,
-                    Carrier = x.Carrier,
-                    Driver = x.Driver,
-                    Vehicle = x.Vehicle,
-                    DeliveryAddress =x.DeliveryAddress,
-                    OrderedProducts = x.Products,
-
+                    OrderId = x.Id,
+                    Sequence = x.SequenceNumber,
+                    ReceiverName = x.Receiver.Name,
+                    OrderedPackagesCount = x.Products.Sum(p => p.OrderedPackagesCount),
+                    OrderedPackagesWeight = x.Products.Sum(p => p.OrderedPackagesWeight),
+                    DeliveryAddress = x.DeliveryAddress.Town + ", " + x.DeliveryAddress.Street,
                 })
-                    .OrderBy(x=>x.SequenceNumber)
-                    .ToList(); ;
-
+                     .OrderBy(x => x.Sequence)
+                     .ToList(); 
                 return this.View("IndexLoggedIn", model);
             }
             else
