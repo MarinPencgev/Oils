@@ -1,0 +1,79 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Oils.Data.Domains;
+using Oils.Models.ViewModels;
+using Oils.Services;
+
+namespace Oils.Controllers
+{
+    public class OrdersController : Controller
+    {
+        private readonly IOrdersService _orderService;
+        private readonly IProductsService _productsService;
+
+        public OrdersController(IOrdersService orderService, IProductsService productsService)
+        {
+            _orderService = orderService;
+            _productsService = productsService;
+        }
+
+        public IActionResult Create()
+        {
+            var products = new CreateOrderViewModel();
+            return View(products);
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateOrderViewModel input)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.View(input); 
+            }
+            input.Purpose = OrderPurpose.Consumption; 
+
+            var order = this._orderService.Create(input.Purpose.ToString(),
+                                                  input.DeliveryAddress.Street,
+                                                  input.Receiver.Name,
+                                                  input.Carrier.Name,
+                                                  input.Driver.FullName,
+                                                  input.Vehicle.RegNumber);
+
+            return Redirect($"/Orders/Edit?id={order.Id}");
+        }
+
+        public IActionResult Edit(string id)
+        {
+            var order = this._orderService.GetOrderById(id);
+            var model = new CreateOrderViewModel()
+            {
+                Id = order.Id,
+                SequenceNumber = order.SequenceNumber,
+                CreatedOn = order.CreatedOn,
+                Purpose = order.Purpose,
+                Status = order.Status,
+                Carrier = order.Carrier,
+                DeliveryAddress = order.DeliveryAddress,
+                Driver = order.Driver,
+                Receiver = order.Receiver,
+                Vehicle = order.Vehicle,
+
+                OrderedProducts = order.Products
+            };
+
+            return View(model); 
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CreateOrderViewModel input)
+        {
+            input.OrderedProducts = _productsService.GetProductsByOrderId(input.Id);
+            _orderService.Edit(input);
+            return View(input);
+        }
+        public IActionResult Remove(string id)
+        {
+            _orderService.Remove(id);
+            return this.Redirect("/");
+        }
+    }
+}
