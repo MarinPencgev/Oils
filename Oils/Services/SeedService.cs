@@ -17,7 +17,6 @@ namespace Oils.Services
         }
         public void Seed()
         {
-            //Seeding
             for (int i = 1; i < 10; i++)
             {
                 this._context.Products.Add(new Product()
@@ -109,6 +108,8 @@ namespace Oils.Services
             }
             
             _context.SaveChanges();
+
+            OrderSeeding();
         }
 
         public void OrderSeeding()

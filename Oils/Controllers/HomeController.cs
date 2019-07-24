@@ -26,28 +26,9 @@ namespace Oils.Controllers
         {
             if (this.User.Identity.IsAuthenticated)
             {
-                //_seeder.Seed();      // Първо се сийдват всички ентитита 
-                //_seeder.OrderSeeding(); // После се сийдват ордърите
+                //_seeder.Seed();
 
                 var uncompletedOrders = this.ordersService.GetAllUncomleted();
-
-                //var model = uncompletedOrders.Select(x => new CreateOrderViewModel
-                //{
-                //    Id = x.Id,
-                //    SequenceNumber = x.SequenceNumber,
-                //    CreatedOn = x.CreatedOn,
-                //    Purpose = x.Purpose,
-                //    Status = x.Status,
-                //    Receiver = x.Receiver,
-                //    Carrier = x.Carrier,
-                //    Driver = x.Driver,
-                //    Vehicle = x.Vehicle,
-                //    DeliveryAddress =x.DeliveryAddress,
-                //    OrderedProducts = x.Products,
-
-                //})
-                //    .OrderBy(x=>x.SequenceNumber)
-                //    .ToList(); 
 
                 var model = uncompletedOrders.Select(x => new UncomletedOrdersViewModel
                 {
