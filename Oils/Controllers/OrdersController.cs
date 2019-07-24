@@ -29,7 +29,6 @@ namespace Oils.Controllers
             {
                 return this.View(input); 
             }
-            input.Purpose = OrderPurpose.Consumption; 
 
             var order = this._orderService.Create(input.Purpose.ToString(),
                                                   input.DeliveryAddress.Street,
@@ -74,6 +73,12 @@ namespace Oils.Controllers
         {
             _orderService.Remove(id);
             return this.Redirect("/");
+        }
+
+        public IActionResult Release(string id)
+        {
+            _orderService.Release(id);
+            return this.Redirect("/"); //TODO View Receipt
         }
     }
 }

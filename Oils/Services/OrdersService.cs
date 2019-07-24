@@ -124,5 +124,16 @@ namespace Oils.Services
 
             return order;
         }
+
+        public Order Release(string id)
+        {
+            var order = _context.Orders.First(x => x.Id == id);
+            order.Status = OrderStatus.Completed;
+
+            _context.SaveChanges();
+
+            return order;
+        }
     }
+
 }

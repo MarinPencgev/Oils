@@ -50,5 +50,10 @@ namespace Oils.Services
         {
             return _context.OrderedProducts.Where(x => x.OrderId == id).ToList();
         }
+
+        public ICollection<Product> GetAll()
+        {
+            return _context.Products.ToList();
+        }
     }
 }

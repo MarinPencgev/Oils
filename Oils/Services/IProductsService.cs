@@ -12,5 +12,6 @@ namespace Oils.Services
         OrderedProducts Add(string orderId, string productCode, string productName, string packegesCount, string packegesWeight);
         OrderedProducts Remove(string id);
         ICollection<OrderedProducts> GetProductsByOrderId(string inputId);
+        ICollection<Product> GetAll();
     }
 }

@@ -10,65 +10,43 @@
         <div class="row">
             <div class="col-4">
 
-                <label asp-for="CreatedOn"></label>
-                <input asp-for="CreatedOn" class="form-control" />
-                <span asp-validation-for="CreatedOn" class="text-danger"></span>
+                <label asp-for="Receiver.Name">Receiver name</label>
+                <input asp-for="Receiver.Name" class="form-control" onchange="getReceiverValue()" />
+                <span asp-validation-for="Receiver.Name" class="text-danger"></span>
+
+                <label asp-for="DeliveryAddress.Street">Addresses list</label>
+                <input asp-for="DeliveryAddress.Street" class="form-control" list="addresses" />
+                <datalist id="addresses">
+                    <option>Address1</option>
+                    <option>Address2</option>
+                    <option>Address3</option>
+                </datalist>
 
                 <label asp-for="Purpose"></label>
                 <select asp-for="Purpose" class="form-control" asp-items="@Html.GetEnumSelectList<OrderPurpose>()"></select>
 
             </div>
             <div class="col-4">
+
                 <label asp-for="Carrier.Name">Carrier name</label>
-                <input asp-for="Carrier.Name" class="form-control" onchange="getFieldValue()" />
+                <input asp-for="Carrier.Name" class="form-control" onchange="getCarrierValue()" />
                 <span asp-validation-for="Carrier.Name" class="text-danger"></span>
 
-                <script>
-                    function getFieldValue() {
-                        var carrier = document.getElementById("myForm").elements[4].value;
-                        document.getElementById("demo").innerHTML = carrier;
-                </script>
-                <p id="demo"></p>
-
-                @{
-
-                    var cars = new List<SelectListItem>
-                        () { new SelectListItem("Choose...", "0") };
-                    // необходим ми е скрипт, понеже не е известно кой превозвач ще въведе юзъра !!!
-                    var carrierCarsNumbers = orderservices.GetVehiclesByCarrierName("Carrier1");
-                    int count = 1;
-                    foreach (var car in carrierCarsNumbers)
-                    {
-                        cars.Add(new SelectListItem(car.RegNumber, count++.ToString()));
-                    }
-
-                    var drivers = new List<SelectListItem>
-                        () { new SelectListItem("Choose...", "0") };
-                    // необходим ми е скрипт, понеже не е известно кой превозвач ще въведе юзъра !!!
-                    var driverNames = orderservices.GetDriversByCarrierName("Carrier1");
-                    int count2 = 1;
-                    foreach (var driver in driverNames)
-                    {
-                        drivers.Add(new SelectListItem(driver.FullName, count2++.ToString()));
-                    }
-
-                }
-
                 <label asp-for="Vehicle.RegNumber">Vehicles list</label>
-                <select asp-for="Vehicle.RegNumber" class="form-control" asp-items="cars"></select>
+                <input asp-for="Vehicle.RegNumber" class="form-control" list="vehicles" />
+                <datalist id="vehicles">
+                    <option>Vehicle1</option>
+                    <option>Vehicle2</option>
+                    <option>Vehicle3</option>
+                </datalist>
 
                 <label asp-for="Driver.FullName">Drivers list</label>
-                <select asp-for="Driver.FullName" class="form-control" asp-items="drivers"></select>
-
-            </div>
-            <div class="col-4">
-
-                <label asp-for="Receiver.Name">Receiver name</label>
-                <input asp-for="Receiver.Name" class="form-control" />
-                <span asp-validation-for="Receiver.Name" class="text-danger"></span>
-
-                <label asp-for="DeliveryAddress.Street">Addresses list</label>
-                <select asp-for="DeliveryAddress.Street" class="form-control" asp-items="drivers"></select>
+                <input asp-for="Driver.FullName" class="form-control" list="drivers" />
+                <datalist id="drivers">
+                    <option>Driver1</option>
+                    <option>Driver2</option>
+                    <option>Driver3</option>
+                </datalist>
 
             </div>
         </div>

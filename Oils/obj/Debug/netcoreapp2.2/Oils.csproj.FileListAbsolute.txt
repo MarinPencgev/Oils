@@ -78,3 +78,5 @@ C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\bin\Debug\netcoreapp2.2\Oils
 C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Oils.Views.pdb
 C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Oils.csproj.CopyComplete
 C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Oils.csprojAssemblyReference.cache
+C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\DependentDropdown\Default.g.cshtml.cs
+C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Orders\Receipt.g.cshtml.cs

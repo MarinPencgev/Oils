@@ -24,5 +24,6 @@ namespace Oils.Services
         ICollection<Driver> GetDriversByCarrierName(string name);
         void Edit(CreateOrderViewModel input);
         Order Remove(string id);
+        Order Release(string id);
     }
 }

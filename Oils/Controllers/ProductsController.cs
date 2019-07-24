@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Oils.Models.ViewModels;
 using Oils.Services;
 
@@ -21,6 +22,7 @@ namespace Oils.Controllers
             {
                 OrderId = id
             };
+
             return this.View(model);
         }
 

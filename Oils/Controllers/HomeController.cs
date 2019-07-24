@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Oils.Data;
-using Oils.Data.Domains;
-using Oils.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using Oils.Models.ViewModels;
 using Oils.Services;
+using System.Diagnostics;
+using System.Linq;
 
 namespace Oils.Controllers
 {
@@ -37,7 +31,7 @@ namespace Oils.Controllers
                     ReceiverName = x.Receiver.Name,
                     OrderedPackagesCount = x.Products.Sum(p => p.OrderedPackagesCount),
                     OrderedPackagesWeight = x.Products.Sum(p => p.OrderedPackagesWeight),
-                    DeliveryAddress = x.DeliveryAddress.Town + ", " + x.DeliveryAddress.Street,
+                    DeliveryAddress = x.DeliveryAddress.Street,
                 })
                      .OrderBy(x => x.Sequence)
                      .ToList(); 

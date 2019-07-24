@@ -74,13 +74,34 @@ namespace Oils
             services.AddTransient<IOrdersService, OrdersService>();
             services.AddTransient<IProductsService, ProductsService>();
             services.AddTransient<IDataSeeder, SeedService>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //Adding Roles
+            //using (var serviceScope = app.ApplicationServices.CreateScope())
+            //{
+            //    using (var context = serviceScope.ServiceProvider.GetRequiredService<OilsDbContext>())
+            //    {
+            //        context.Database.EnsureCreated();
+            //        if (!context.Roles.Any())
+            //        {
+            //            context.Roles.Add(new IdentityRole
+            //            {
+            //                Name = "Admin",
+            //                NormalizedName = "ADMIN"
+            //            });
+            //            context.Roles.Add(new IdentityRole
+            //            {
+            //                Name = "User",
+            //                NormalizedName = "USER"
+            //            });
+            //            context.SaveChanges();
+            //        }
+            //    }
+            //}
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -89,7 +110,7 @@ namespace Oils
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+  
                 app.UseHsts();
             }
 
@@ -104,9 +125,6 @@ namespace Oils
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(
-                    name: "remove",
-                    template: "{controller=Home}/{action=Index}/{id?}/{id2?}");
             });
         }
     }
