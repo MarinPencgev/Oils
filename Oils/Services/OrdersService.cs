@@ -39,7 +39,7 @@ namespace Oils.Services
             var order = new Order()
             {
                 SequenceNumber = (lastSequence + 1).ToString(),
-                CreatedOn = DateTime.Now,
+                CreatedOn = DateTime.UtcNow,
                 Purpose = deliveryPurpose,
                 Status = OrderStatus.Uncompleted,
 
@@ -81,7 +81,7 @@ namespace Oils.Services
                 .Include(x => x.Carrier)
                 .Include(x => x.Products)
                 .ThenInclude(x => x.Product)
-                .Where(x => x.Status == OrderStatus.Uncompleted);
+                .Where(x => x.Status == OrderStatus.Uncompleted && x.isDeleted == false);
         }
 
         public ICollection<Vehicle> GetVehiclesByCarrierName(string name)
@@ -118,8 +118,8 @@ namespace Oils.Services
         public Order Remove(string id)
         {
             var order = _context.Orders.First(x => x.Id == id);
+            order.isDeleted = true;
 
-            _context.Orders.Remove(order);
             _context.SaveChanges();
 
             return order;
@@ -129,6 +129,7 @@ namespace Oils.Services
         {
             var order = _context.Orders.First(x => x.Id == id);
             order.Status = OrderStatus.Completed;
+            order.ReleaseDate = DateTime.UtcNow;
 
             _context.SaveChanges();
 

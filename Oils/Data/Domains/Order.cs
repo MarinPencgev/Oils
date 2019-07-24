@@ -16,6 +16,10 @@ namespace Oils.Data.Domains
 
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 
+        public DateTime ReleaseDate { get; set; }
+
+        public bool isDeleted { get; set; }
+
         public OrderPurpose Purpose { get; set; } = OrderPurpose.Consumption;
 
         public OrderStatus Status { get; set; } = OrderStatus.Uncompleted;
