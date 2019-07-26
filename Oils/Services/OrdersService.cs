@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,7 +21,8 @@ namespace Oils.Services
             _context = context;
         }
 
-        public Order Create(string purpose,
+        public Order Create(string userId,
+                            string purpose,
                             string deliveryAddress,
                             string receiverName,
                             string carrierName,
@@ -42,7 +44,7 @@ namespace Oils.Services
                 CreatedOn = DateTime.UtcNow,
                 Purpose = deliveryPurpose,
                 Status = OrderStatus.Uncompleted,
-
+                UserId = userId,
                 DeliveryAddress = address,
                 Receiver = receiver,
                 Carrier = carrier,
@@ -59,6 +61,7 @@ namespace Oils.Services
         public Order GetOrderById(string id)
         {
             var order = _context.Orders
+                .Include(x => x.OilsUser)
                 .Include(x => x.DeliveryAddress)
                 .Include(x => x.Receiver)
                 .Include(x => x.Carrier)
@@ -74,6 +77,7 @@ namespace Oils.Services
         public IQueryable<Order> GetAllUncomleted()
         {
             var uncomletedOrders = _context.Orders
+                .Include(x => x.OilsUser)
                 .Include(x => x.DeliveryAddress)
                 .Include(x => x.Driver)
                 .Include(x => x.Vehicle)
@@ -81,7 +85,7 @@ namespace Oils.Services
                 .Include(x => x.Carrier)
                 .Include(x => x.Products)
                 .ThenInclude(x => x.Product)
-                .Where(x => x.Status == OrderStatus.Uncompleted && x.isDeleted == false);
+                .Where(x => x.Status == OrderStatus.Uncompleted && x.IsDeleted == false);
 
             return uncomletedOrders;
         }
@@ -120,7 +124,7 @@ namespace Oils.Services
         public Order Remove(string id)
         {
             var order = _context.Orders.First(x => x.Id == id);
-            order.isDeleted = true;
+            order.IsDeleted = true;
 
             _context.SaveChanges();
 

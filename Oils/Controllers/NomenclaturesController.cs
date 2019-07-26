@@ -17,7 +17,6 @@ namespace Oils.Controllers
         }
         public IActionResult All()
         {
-
             var nomenclatures = new Dictionary<string, int>()
             {
                 ["Products"] = _nomenclaturesService.GetRecordings("Products"),

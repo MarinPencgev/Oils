@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 using Oils.Data.Domains;
 using Oils.Models.ViewModels;
 using Oils.Services;
@@ -31,7 +33,9 @@ namespace Oils.Controllers
                 return this.View(input); 
             }
 
-            var order = this._orderService.Create(input.Purpose.ToString(),
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var order = this._orderService.Create(userId,
+                                                  input.Purpose.ToString(),
                                                   input.DeliveryAddress.Street,
                                                   input.Receiver.Name,
                                                   input.Carrier.Name,

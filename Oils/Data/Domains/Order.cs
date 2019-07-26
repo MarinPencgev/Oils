@@ -18,11 +18,14 @@ namespace Oils.Data.Domains
 
         public DateTime ReleaseDate { get; set; }
 
-        public bool isDeleted { get; set; }
+        public bool IsDeleted { get; set; }
 
         public OrderPurpose Purpose { get; set; } = OrderPurpose.Consumption;
 
         public OrderStatus Status { get; set; } = OrderStatus.Uncompleted;
+
+        public string UserId { get; set; }
+        public OilsUser OilsUser { get; set; }
 
         public string DeliveryAddressId { get; set; }
         public virtual DeliveryAddress DeliveryAddress { get; set; }
