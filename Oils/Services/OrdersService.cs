@@ -73,7 +73,7 @@ namespace Oils.Services
 
         public IQueryable<Order> GetAllUncomleted()
         {
-            return _context.Orders
+            var uncomletedOrders = _context.Orders
                 .Include(x => x.DeliveryAddress)
                 .Include(x => x.Driver)
                 .Include(x => x.Vehicle)
@@ -82,6 +82,8 @@ namespace Oils.Services
                 .Include(x => x.Products)
                 .ThenInclude(x => x.Product)
                 .Where(x => x.Status == OrderStatus.Uncompleted && x.isDeleted == false);
+
+            return uncomletedOrders;
         }
 
         public ICollection<Vehicle> GetVehiclesByCarrierName(string name)

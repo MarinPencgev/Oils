@@ -1,8 +1,10 @@
 ﻿@using Oils.Models.ViewModels
 @using Oils.Data.Domains
 @using Oils.Services
+@using Oils.ViewComponents
 @model CreateOrderViewModel
 @inject IOrdersService orderservices
+
 <h1 class="text-center suls-text-color">Create Order</h1>
 <form asp-controller="Orders" asp-action="Create" method="post" id="myForm">
 

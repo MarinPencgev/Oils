@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using Microsoft.AspNetCore.Mvc.Rendering
 @using Oils.Models.ViewModels
 @model ProductInputViewModel
 
@@ -12,7 +13,7 @@
 
             <div class="col-6">
                 <label asp-for="ProductCode">Product code</label>
-                <input asp-for="ProductCode" class="form-control" />
+                <input asp-for="ProductCode" class="form-control"/>
                 <span asp-validation-for="ProductCode" class="text-danger"></span>
 
                 <label asp-for="ProductName">Product name</label>
@@ -30,12 +31,10 @@
                 <span asp-validation-for="Weight" class="text-danger"></span>
 
                 <input class="invisible" id="Id" name="Id" value="@Model.OrderId" />
-
             </div>
         </div>
     </div>
 
-    <div class="top-border-line primary-separator"></div>
     <div class="button-holder d-flex justify-content-center">
         <button type="submit" class="btn btn-warning" href="/Products/Add?id=@Model.OrderId">Add</button>
     </div>

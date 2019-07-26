@@ -16,6 +16,23 @@ namespace Oils.Controllers
             _ordersService = ordersService;
         }
 
+        public IActionResult Create(string id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateProductInputView input)
+        {
+            _productsService.Create(input.Name,
+                                    input.ProductCode,
+                                    input.Viscosity,
+                                    input.PackageCapacity,
+                                    input.PackageWeight);
+
+            return this.Redirect("/Products/Add");
+        }
+
         public IActionResult Add(string id)
         {
             var model = new ProductInputViewModel
@@ -23,7 +40,7 @@ namespace Oils.Controllers
                 OrderId = id
             };
 
-            return this.View(model);
+            return this.View("Add",model);
         }
 
         [HttpPost]

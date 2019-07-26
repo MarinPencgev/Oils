@@ -6,6 +6,7 @@
         public string SerialNumber { get; set; }
         public int PackagesCount { get; set; }
         public decimal PackagesWeight{ get; set; }
+        public decimal Dencity { get; set; }
 
         public string ProductId { get; set; }
         public Product Product { get; set; }

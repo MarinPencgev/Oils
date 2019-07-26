@@ -19,7 +19,8 @@ namespace Oils.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View(await _context.Products.ToListAsync());
+            var products = await _context.Products.ToListAsync();
+            return View(products);
         }
         
     }

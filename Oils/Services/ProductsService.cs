@@ -55,5 +55,22 @@ namespace Oils.Services
         {
             return _context.Products.ToList();
         }
+
+        public Product Create(string name, string productCode, string viscosity, int packagesCapacity, decimal packagesWeight)
+        {
+            var product = new Product()
+            {
+                Name = name,
+                ProductCode = productCode,
+                Viscosity = viscosity,
+                PackageCapacity = packagesCapacity,
+                PackageWeight = packagesWeight,
+            };
+
+            _context.Products.Add(product);
+            _context.SaveChanges();
+
+            return product;
+        }
     }
 }

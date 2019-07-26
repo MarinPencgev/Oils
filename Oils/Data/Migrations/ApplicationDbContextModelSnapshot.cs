@@ -180,6 +180,8 @@ namespace Oils.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<decimal>("Dencity");
+
                     b.Property<int>("PackagesCount");
 
                     b.Property<decimal>("PackagesWeight");
@@ -318,7 +320,7 @@ namespace Oils.Data.Migrations
 
                     b.Property<int>("PackageCapacity");
 
-                    b.Property<int>("PackageWeight");
+                    b.Property<decimal>("PackageWeight");
 
                     b.Property<string>("ProductCode");
 

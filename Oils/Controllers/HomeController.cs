@@ -27,7 +27,7 @@ namespace Oils.Controllers
                 var model = uncompletedOrders.Select(x => new UncomletedOrdersViewModel
                 {
                     OrderId = x.Id,
-                    Sequence = x.SequenceNumber,
+                    Sequence = int.Parse(x.SequenceNumber),
                     ReceiverName = x.Receiver.Name,
                     OrderedPackagesCount = x.Products.Sum(p => p.OrderedPackagesCount),
                     OrderedPackagesWeight = x.Products.Sum(p => p.OrderedPackagesWeight),

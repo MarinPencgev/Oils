@@ -13,5 +13,6 @@ namespace Oils.Services
         OrderedProducts Remove(string id);
         ICollection<OrderedProducts> GetProductsByOrderId(string inputId);
         ICollection<Product> GetAll();
+        Product Create(string name, string productCode, string viscosity, int packagesCapacity, decimal packagesWeight);
     }
 }

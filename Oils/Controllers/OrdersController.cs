@@ -19,6 +19,7 @@ namespace Oils.Controllers
         public IActionResult Create()
         {
             var products = new CreateOrderViewModel();
+            
             return View(products);
         }
 
