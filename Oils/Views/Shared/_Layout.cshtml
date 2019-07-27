@@ -34,8 +34,21 @@
                         </li>
                         @if (this.User.Identity.IsAuthenticated)
                         {
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Nomenclatures" asp-action="All">Nomenclatures</a>
+
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Nomenclatures" asp-action="All">Nomenclatures</a>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Nomenclatures
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="/Nomenclatures/Products">Products</a>
+                                        <a class="dropdown-item" href="/Nomenclatures/Receivers">Receivers</a>
+                                        <a class="dropdown-item" href="/Nomenclatures/Carriers">Carriers</a>
+                                        <a class="dropdown-item" href="/Nomenclatures/Vehicles">Vehicles</a>
+                                        <a class="dropdown-item" href="/Nomenclatures/Drivers">Drivers</a>
+                                    </div>
+                                </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Uncompleted Orders</a>

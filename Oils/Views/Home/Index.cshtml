@@ -2,5 +2,11 @@
     ViewData["Title"] = "Home Page";
 }
 @using Oils.ViewComponents
-@(await Component.InvokeAsync<DependentDropdownViewComponent>())
+
+<tr class="row">
+    <th scope="col" class="col-lg-6">
+        @(await Component.InvokeAsync<DependentDropdownViewComponent>())
+    </th>
+</tr>
+
 
