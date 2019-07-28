@@ -3,17 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Oils.Data;
+using Oils.Data.Domains;
 
 namespace Oils.Services
 {
     public class NomenclaturesServices : INomenclaturesService
     {
         private readonly OilsDbContext _context;
+        private readonly IMapper _mapper;
 
-        public NomenclaturesServices(OilsDbContext context)
+        public NomenclaturesServices(OilsDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public int GetRecordings(string entityName)
         {
@@ -35,6 +39,9 @@ namespace Oils.Services
                 case "Drivers":
                     recordings = _context.Drivers.Count();
                     break;
+                case "Addresses":
+                    recordings = _context.DeliveryAddresses.Count();
+                    break;
             }
 
             return recordings;
@@ -54,9 +61,17 @@ namespace Oils.Services
                     return _context.Vehicles.ToList();
                 case "Drivers":
                     return _context.Drivers.ToList();
+                case "Addresses":
+                    return _context.DeliveryAddresses.ToList();
             }
 
             return null;
+        }
+
+        public Receiver GetReceiverById(string id)
+        {
+           var receiver = _context.Receivers.First(x=>x.Id == id);
+           return receiver;
         }
     }
 }

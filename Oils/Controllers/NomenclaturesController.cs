@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Oils.Data.Domains;
+using Oils.Models.ViewModels;
 using Oils.Services;
 
 namespace Oils.Controllers
@@ -10,10 +13,12 @@ namespace Oils.Controllers
     public class NomenclaturesController: Controller
     {
         private readonly INomenclaturesService _nomenclaturesService;
+        private readonly IMapper _mapper;
 
-        public NomenclaturesController(INomenclaturesService nomenclaturesService)
+        public NomenclaturesController(INomenclaturesService nomenclaturesService, IMapper mapper)
         {
             _nomenclaturesService = nomenclaturesService;
+            _mapper = mapper;
         }
         public IActionResult All()
         {
@@ -24,6 +29,7 @@ namespace Oils.Controllers
                 ["Carriers"] = _nomenclaturesService.GetRecordings("Carriers"),
                 ["Vehicles"] = _nomenclaturesService.GetRecordings("Vehicles"),
                 ["Drivers"] = _nomenclaturesService.GetRecordings("Drivers"),
+                ["Addresses"] = _nomenclaturesService.GetRecordings("Addresses"),
             };
             return this.View(nomenclatures);
         }
@@ -51,6 +57,25 @@ namespace Oils.Controllers
         {
             var model = _nomenclaturesService.All("Drivers");
             return this.View(model);
+        }
+
+        public IActionResult Addresses()
+        {
+            var model = _nomenclaturesService.All("Addresses");
+            return this.View(model);
+        }
+
+        public IActionResult EditReceiver(string id)
+        {
+            var receiver = _nomenclaturesService.GetReceiverById(id);
+            var model = _mapper.Map<EditReceiverEntityViewModel>(receiver);
+            return this.View("EditReceiver", model);
+        }
+        [HttpPost]
+        public IActionResult ReceiverEdit(EditReceiverEntityViewModel input)
+        {
+            var receiver = _mapper.Map<Receiver>(input);
+            return this.View("EditReceiver");
         }
     }
 }

@@ -81,9 +81,11 @@ C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razo
 C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Products\Create.g.cshtml.cs
 C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Nomenclatures\All.g.cshtml.cs
 C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Nomenclatures\Receivers.g.cshtml.cs
-C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Oils.csprojAssemblyReference.cache
 C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Nomenclatures\Products.g.cshtml.cs
 C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Nomenclatures\Carriers.g.cshtml.cs
 C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Nomenclatures\Vehicles.g.cshtml.cs
 C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Nomenclatures\Drivers.g.cshtml.cs
 C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\DependentDropdown\Default.g.cshtml.cs
+C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Nomenclatures\Addresses.g.cshtml.cs
+C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Razor\Views\Nomenclatures\EditReceiver.g.cshtml.cs
+C:\Users\Nora\Desktop\Oils-ProjectDefence\Oils\Oils\obj\Debug\netcoreapp2.2\Oils.csprojAssemblyReference.cache
