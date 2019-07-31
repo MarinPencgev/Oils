@@ -36,15 +36,15 @@ namespace Oils.Services
             Driver driver = _context.Drivers.FirstOrDefault(x => x.FullName == driverName && x.CarrierId == carrier.Id);
             Vehicle vehicle = _context.Vehicles.FirstOrDefault(x => x.RegNumber == vehicleNumber && x.CarrierId == carrier.Id);
 
-            int lastSequence = _context.Orders.Max(x => int.Parse(x.SequenceNumber));
+            //int lastSequence = _context.Orders.Max(x => int.Parse(x.SequenceNumber));
 
             var order = new Order()
             {
-                SequenceNumber = (lastSequence + 1).ToString(),
+                //SequenceNumber = (lastSequence + 1).ToString(),
                 CreatedOn = DateTime.UtcNow,
                 Purpose = deliveryPurpose,
                 Status = OrderStatus.Uncompleted,
-                UserId = userId,
+                OilsUserId = userId,
                 DeliveryAddress = address,
                 Receiver = receiver,
                 Carrier = carrier,

@@ -64,7 +64,6 @@ namespace Oils.Services
                 ProductCode = productCode,
                 Viscosity = viscosity,
                 PackageCapacity = packagesCapacity,
-                PackageWeight = packagesWeight,
             };
 
             _context.Products.Add(product);

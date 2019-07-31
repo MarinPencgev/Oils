@@ -67,11 +67,5 @@ namespace Oils.Services
 
             return null;
         }
-
-        public Receiver GetReceiverById(string id)
-        {
-           var receiver = _context.Receivers.First(x=>x.Id == id);
-           return receiver;
-        }
     }
 }

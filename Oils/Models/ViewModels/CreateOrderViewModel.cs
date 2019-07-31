@@ -7,13 +7,14 @@ namespace Oils.Models.ViewModels
 {
     public class CreateOrderViewModel
     {
-        public string Id { get; set; }
-
-        public string SequenceNumber { get; set; }
         public CreateOrderViewModel()
         {
             this.OrderedProducts = new List<OrderedProducts>();
         }
+        public string Id { get; set; }
+
+        public int SequenceNumber { get; set; }
+        
         [Display(Name = "Creation date")]
         [DataType(DataType.Date)]    
         public DateTime CreatedOn { get; set; }

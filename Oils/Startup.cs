@@ -29,13 +29,10 @@ namespace Oils
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
@@ -44,10 +41,7 @@ namespace Oils
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddDefaultIdentity<OilsUser>()
-            //    .AddDefaultUI(UIFramework.Bootstrap4)
-            //    .AddEntityFrameworkStores<OilsDbContext>();
-
+            //Password settings
             services.AddIdentity<OilsUser, IdentityRole>(o =>
             {
                 o.Password.RequiredLength = 3;
@@ -61,34 +55,28 @@ namespace Oils
                 .AddEntityFrameworkStores<OilsDbContext>()
                 .AddDefaultTokenProviders(); ;
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
+
             // Auto Mapper Configurations
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
+
             });
+
 
             IMapper mapper = mappingConfig.CreateMapper();
+
             services.AddSingleton(mapper);
-
-            //Password settings
-            services.Configure<IdentityOptions>(o =>
-            {
-
-
-
-            });
 
             //Application services
             services.AddTransient<IOrdersService, OrdersService>();
             services.AddTransient<IProductsService, ProductsService>();
             services.AddTransient<IDataSeeder, SeedService>();
             services.AddTransient<INomenclaturesService, NomenclaturesServices>();
+            services.AddTransient<IReceiverService, ReceiverService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             //Adding Roles
@@ -122,7 +110,7 @@ namespace Oils
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-  
+
                 app.UseHsts();
             }
 

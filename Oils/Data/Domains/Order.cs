@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Oils.Models;
 
 namespace Oils.Data.Domains
@@ -12,11 +14,12 @@ namespace Oils.Data.Domains
         }
         public string Id { get; set; }
 
-        public string SequenceNumber { get; set; } 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int SequenceNumber { get; set; } 
 
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; } = null;
 
         public bool IsDeleted { get; set; }
 
@@ -24,7 +27,7 @@ namespace Oils.Data.Domains
 
         public OrderStatus Status { get; set; } = OrderStatus.Uncompleted;
 
-        public string UserId { get; set; }
+        public string OilsUserId { get; set; }
         public OilsUser OilsUser { get; set; }
 
         public string DeliveryAddressId { get; set; }

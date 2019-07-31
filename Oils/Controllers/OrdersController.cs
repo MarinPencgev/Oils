@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Oils.Data.Domains;
 using Oils.Models.ViewModels;
@@ -11,11 +12,13 @@ namespace Oils.Controllers
     {
         private readonly IOrdersService _orderService;
         private readonly IProductsService _productsService;
+        private readonly IMapper _mapper;
 
-        public OrdersController(IOrdersService orderService, IProductsService productsService)
+        public OrdersController(IOrdersService orderService, IProductsService productsService, IMapper mapper)
         {
             _orderService = orderService;
             _productsService = productsService;
+            _mapper = mapper;
         }
 
         public IActionResult Create()
@@ -48,21 +51,23 @@ namespace Oils.Controllers
         public IActionResult Edit(string id)
         {
             var order = this._orderService.GetOrderById(id);
-            var model = new CreateOrderViewModel()
-            {
-                Id = order.Id,
-                SequenceNumber = order.SequenceNumber,
-                CreatedOn = order.CreatedOn,
-                Purpose = order.Purpose,
-                Status = order.Status,
-                Carrier = order.Carrier,
-                DeliveryAddress = order.DeliveryAddress,
-                Driver = order.Driver,
-                Receiver = order.Receiver,
-                Vehicle = order.Vehicle,
 
-                OrderedProducts = order.Products
-            };
+            var model = _mapper.Map<CreateOrderViewModel>(order); // The mapper did not map the OrderedProducts list 
+            //var model = new CreateOrderViewModel()
+            //{
+            //    Id = order.Id,
+            //    SequenceNumber = order.SequenceNumber,
+            //    CreatedOn = order.CreatedOn,
+            //    Purpose = order.Purpose,
+            //    Status = order.Status,
+            //    Carrier = order.Carrier,
+            //    DeliveryAddress = order.DeliveryAddress,
+            //    Driver = order.Driver,
+            //    Receiver = order.Receiver,
+            //    Vehicle = order.Vehicle,
+
+            //    OrderedProducts = order.Products
+            //};
 
             return View(model); 
         }

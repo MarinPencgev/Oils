@@ -24,7 +24,6 @@ namespace Oils.Services
                     Name = $"Oil{i}",
                     ProductCode = $"0101010{i}",
                     PackageCapacity = 205,
-                    PackageWeight = 185,
                     Viscosity = $"{i * 5}/40",
                     Lots = new List<Lot>
                     {
@@ -33,6 +32,7 @@ namespace Oils.Services
                             SerialNumber = $"12{i*10}/121212",
                             PackagesCount = 20 + i,
                             PackagesWeight = 3700,
+                            Density = 0.905m,
                         }
                     },
                     
@@ -43,6 +43,7 @@ namespace Oils.Services
             {
                 this._context.Receivers.Add(new Receiver()
                 {
+                    
                     Name = $"Receiver{i}",
                     DeliveryAddresses = new List<DeliveryAddress>()
                     {
@@ -61,7 +62,8 @@ namespace Oils.Services
                             Town = $"Town{i + 2}",
                             Street = $"Street ({i + 2})",
                         },
-                    }
+                    },
+                    Orders = new List<Order>()
                 });
             }
 
@@ -103,13 +105,14 @@ namespace Oils.Services
                         {
                             RegNumber = $"PB{i+2}{i+2}{i+2}{i+2}AH"
                         },
-                    }
+                    },
+
                 });
             }
             
             _context.SaveChanges();
 
-            OrderSeeding();
+           // OrderSeeding();
         }
 
         public void OrderSeeding()
@@ -118,7 +121,7 @@ namespace Oils.Services
             {
                 this._context.Orders.Add(new Order()
                 {
-                    SequenceNumber = $"{++i}",
+                    SequenceNumber = ++i,
                     CreatedOn = DateTime.Now,
                     Purpose = OrderPurpose.Consumption,
                     Status = OrderStatus.Uncompleted,

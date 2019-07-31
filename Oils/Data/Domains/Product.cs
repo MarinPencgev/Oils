@@ -18,8 +18,6 @@ namespace Oils.Data.Domains
 
         public int PackageCapacity { get; set; }
 
-        public decimal PackageWeight { get; set; }
-
         public ICollection<Lot> Lots { get; set; }
     }
 }

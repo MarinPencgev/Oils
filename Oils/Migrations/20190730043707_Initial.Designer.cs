@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oils.Data;
 
-namespace Oils.Data.Migrations
+namespace Oils.Migrations
 {
     [DbContext(typeof(OilsDbContext))]
-    [Migration("20190719124630_CorrectedModels")]
-    partial class CorrectedModels
+    [Migration("20190730043707_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -182,6 +182,8 @@ namespace Oils.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<decimal>("Density");
+
                     b.Property<int>("PackagesCount");
 
                     b.Property<decimal>("PackagesWeight");
@@ -265,11 +267,19 @@ namespace Oils.Data.Migrations
 
                     b.Property<string>("DriverId");
 
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("OilsUserId");
+
                     b.Property<int>("Purpose");
 
                     b.Property<string>("ReceiverId");
 
-                    b.Property<string>("SequenceNumber");
+                    b.Property<DateTime?>("ReleaseDate");
+
+                    b.Property<int>("SequenceNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Status");
 
@@ -282,6 +292,8 @@ namespace Oils.Data.Migrations
                     b.HasIndex("DeliveryAddressId");
 
                     b.HasIndex("DriverId");
+
+                    b.HasIndex("OilsUserId");
 
                     b.HasIndex("ReceiverId");
 
@@ -315,8 +327,6 @@ namespace Oils.Data.Migrations
                     b.Property<string>("Name");
 
                     b.Property<int>("PackageCapacity");
-
-                    b.Property<int>("PackageWeight");
 
                     b.Property<string>("ProductCode");
 
@@ -434,6 +444,10 @@ namespace Oils.Data.Migrations
                     b.HasOne("Oils.Data.Domains.Driver", "Driver")
                         .WithMany()
                         .HasForeignKey("DriverId");
+
+                    b.HasOne("Oils.Data.Domains.OilsUser", "OilsUser")
+                        .WithMany()
+                        .HasForeignKey("OilsUserId");
 
                     b.HasOne("Oils.Data.Domains.Receiver", "Receiver")
                         .WithMany("Orders")

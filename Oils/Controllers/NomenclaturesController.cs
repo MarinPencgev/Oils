@@ -65,17 +65,6 @@ namespace Oils.Controllers
             return this.View(model);
         }
 
-        public IActionResult EditReceiver(string id)
-        {
-            var receiver = _nomenclaturesService.GetReceiverById(id);
-            var model = _mapper.Map<EditReceiverEntityViewModel>(receiver);
-            return this.View("EditReceiver", model);
-        }
-        [HttpPost]
-        public IActionResult ReceiverEdit(EditReceiverEntityViewModel input)
-        {
-            var receiver = _mapper.Map<Receiver>(input);
-            return this.View("EditReceiver");
-        }
+        
     }
 }
